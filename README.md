@@ -63,7 +63,7 @@ streamlit run dashboard/main.py
 
 GitHub: https://github.com/MLansiquot
 
-LinkedIn: (coming next)
+LinkedIn: (www.linkedin.com/in/malik-lansiquot-0999bb15a)
 
 ⭐ If you're reviewing this repo:
 
