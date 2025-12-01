@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Sports Data Intelligence</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">🏀</span>
+                <h1>NBA Sports Data Intelligence</h1>
+            </div>
+            <nav class="nav">
+                <a href="#overview" class="nav-link active">Overview</a>
+                <a href="#teams" class="nav-link">Teams</a>
+                <a href="#players" class="nav-link">Players</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2 class="hero-title">Comprehensive NBA Statistics & Analytics</h2>
+            <p class="hero-subtitle">Powered by Oracle 19c + Python + Advanced Analytics</p>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">📊 Overview</h2>
+            <div class="stats-grid" id="overview-stats">
+                <!-- Stats will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams Section -->
+    <section id="teams" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">🏆 Team Performance</h2>
+
+            <!-- Featured Top Teams with Logos -->
+            <div class="card">
+                <h3 class="card-title">Top 5 Teams</h3>
+                <div id="topTeamsLogos" class="top-teams-logos">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Top Teams Chart -->
+            <div class="card">
+                <h3 class="card-title">Top 10 Teams by Win Percentage</h3>
+                <canvas id="topTeamsChart"></canvas>
+            </div>
+
+            <!-- Team Standings Table -->
+            <div class="card">
+                <h3 class="card-title">Team Standings</h3>
+                <div class="table-controls">
+                    <input type="text" id="teamSearch" placeholder="Search teams..." class="search-input">
+                    <select id="sortBy" class="sort-select">
+                        <option value="win_pct">Sort by Win %</option>
+                        <option value="wins">Sort by Wins</option>
+                        <option value="points">Sort by Points</option>
+                        <option value="team_name">Sort by Name</option>
+                    </select>
+                </div>
+                <div class="table-wrapper">
+                    <table id="teamsTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Team</th>
+                                <th>Wins</th>
+                                <th>Losses</th>
+                                <th>Win %</th>
+                                <th>Points</th>
+                                <th>Assists</th>
+                                <th>Rebounds</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teamsTableBody">
+                            <!-- Data will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Players Section -->
+    <section id="players" class="section">
+        <div class="container">
+            <h2 class="section-title">👤 Player Statistics</h2>
+            
+            <!-- Top Players Chart -->
+            <div class="card">
+                <h3 class="card-title">Top Players by Points Per Game</h3>
+                <canvas id="topPlayersChart"></canvas>
+            </div>
+
+            <!-- Player Stats Table -->
+            <div class="card">
+                <h3 class="card-title">Player Performance</h3>
+                <div class="table-wrapper">
+                    <table id="playersTable" class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Team</th>
+                                <th>Season</th>
+                                <th>Games</th>
+                                <th>Minutes</th>
+                                <th>Points</th>
+                                <th>Assists</th>
+                                <th>Rebounds</th>
+                                <th>FG%</th>
+                                <th>3P%</th>
+                                <th>FT%</th>
+                            </tr>
+                        </thead>
+                        <tbody id="playersTableBody">
+                            <!-- Data will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">📈 Advanced Analytics</h2>
+            
+            <div class="charts-grid">
+                <!-- Wins vs Losses Scatter -->
+                <div class="card">
+                    <h3 class="card-title">Wins vs Losses Distribution</h3>
+                    <canvas id="winsLossesChart"></canvas>
+                </div>
+
+                <!-- Points Distribution -->
+                <div class="card">
+                    <h3 class="card-title">Team Points Distribution</h3>
+                    <canvas id="pointsDistChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 NBA Sports Data Intelligence | Powered by Oracle 19c, Python & Modern Web Technologies</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

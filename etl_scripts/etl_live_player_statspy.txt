@@ -1,0 +1,90 @@
+import sys, os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import requests
+import cx_Oracle
+from config import get_connection
+
+# ======================
+# LIVE PLAYER API SOURCE
+# ======================
+API_URL = "https://api.balldontlie.io/v1/stats"
+API_KEY = "081aceca-0dd3-40f8-a617-bf5ce7212364"   # <---- REQUIRED
+
+headers = {"Authorization": f"Bearer {API_KEY}"}
+
+
+def fetch_live_stats(pages=3):
+    """Pull 300+ real player stat records from API."""
+    all_data = []
+
+    for p in range(1, pages+1):
+        print(f"📡 Fetching Page {p}...")
+        response = requests.get(f"{API_URL}?per_page=100&page={p}", headers=headers)
+
+        if response.status_code != 200:
+            print("❌ API ERROR:", response.status_code)
+            break
+        
+        page_data = response.json().get("data", [])
+        all_data.extend(page_data)
+
+    print(f"📥 Total Records Fetched: {len(all_data)}")
+    return all_data
+
+
+def load_into_oracle(records):
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    inserted = 0
+    updated = 0
+
+    for r in records:
+        player_id = r["player"]["id"]
+        name = f"{r['player']['first_name']} {r['player']['last_name']}"
+
+        try:
+            cursor.execute("""
+                MERGE INTO NBA_PLAYER_LIVE_STATS dst
+                USING (SELECT :1 AS PID FROM dual) src
+                ON (dst.PLAYER_ID = src.PID)
+                WHEN MATCHED THEN
+                    UPDATE SET 
+                        TEAM_NAME=:2, SEASON=:3, GAME_DATE=:4,
+                        POINTS=:5, REBOUNDS=:6, ASSISTS=:7, STEALS=:8,
+                        BLOCKS=:9, TURNOVERS=:10, MINUTES=:11
+                WHEN NOT MATCHED THEN
+                    INSERT (PLAYER_ID, PLAYER_NAME, TEAM_NAME, SEASON, GAME_DATE,
+                            POINTS, REBOUNDS, ASSISTS, STEALS, BLOCKS, TURNOVERS, MINUTES)
+                    VALUES (:1,:12,:2,:3,:4,:5,:6,:7,:8,:9,:10,:11)
+            """, (
+                player_id,
+                r["team"]["full_name"],
+                r["game"]["season"],
+                r["game"]["date"][:10],
+                r["pts"], r["reb"], r["ast"], r["stl"], r["blk"], r["turnover"], r["min"],
+                name
+            ))
+
+            if cursor.rowcount == 1:
+                inserted += 1
+            else:
+                updated += 1
+
+        except cx_Oracle.Error:
+            continue
+
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    print(f"\n🎉 Sync Complete:")
+    print(f"   ➤ {inserted} players inserted")
+    print(f"   🔁 {updated} players updated")
+
+
+if __name__ == "__main__":
+    print("\n🚀 Pulling LIVE NBA Player Stats...")
+    data = fetch_live_stats(pages=3)
+    load_into_oracle(data)

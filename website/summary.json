@@ -1,0 +1,111 @@
+{
+  "teams": {
+    "total_teams": 802,
+    "top_10_teams": [
+      {
+        "team_name": "Golden State Warriors",
+        "win_pct": 0.89,
+        "wins": 73,
+        "losses": 9
+      },
+      {
+        "team_name": "Chicago Bulls",
+        "win_pct": 0.841,
+        "wins": 69,
+        "losses": 13
+      },
+      {
+        "team_name": "Los Angeles Lakers",
+        "win_pct": 0.817,
+        "wins": 67,
+        "losses": 15
+      },
+      {
+        "team_name": "Dallas Mavericks",
+        "win_pct": 0.817,
+        "wins": 67,
+        "losses": 15
+      },
+      {
+        "team_name": "Golden State Warriors",
+        "win_pct": 0.817,
+        "wins": 67,
+        "losses": 15
+      },
+      {
+        "team_name": "San Antonio Spurs",
+        "win_pct": 0.817,
+        "wins": 67,
+        "losses": 15
+      },
+      {
+        "team_name": "Golden State Warriors",
+        "win_pct": 0.817,
+        "wins": 67,
+        "losses": 15
+      },
+      {
+        "team_name": "Boston Celtics",
+        "win_pct": 0.805,
+        "wins": 66,
+        "losses": 16
+      },
+      {
+        "team_name": "Cleveland Cavaliers",
+        "win_pct": 0.805,
+        "wins": 66,
+        "losses": 16
+      },
+      {
+        "team_name": "Miami Heat",
+        "win_pct": 0.805,
+        "wins": 66,
+        "losses": 16
+      }
+    ],
+    "avg_win_pct": 0.49981047381546134,
+    "avg_points": 100.92493765586035,
+    "max_wins": 73,
+    "max_points": 120.7
+  },
+  "players": {
+    "total_players": 2,
+    "avg_points": 27.2,
+    "avg_assists": 6.699999999999999,
+    "avg_rebounds": 6.75,
+    "top_players": [
+      {
+        "PLAYER_NAME": "Stephen Curry",
+        "TEAM_NAME": "Golden State Warriors",
+        "SEASON": 2023,
+        "GAMES_PLAYED": 74,
+        "MINUTES": 34.2,
+        "POINTS": 29.4,
+        "ASSISTS": 6.1,
+        "REBOUNDS": 6.0,
+        "STEALS": 0.8,
+        "BLOCKS": 0.4,
+        "TURNOVERS": 3.1,
+        "FG_PERCENT": 0.477,
+        "THREE_PERCENT": 0.421,
+        "FT_PERCENT": 0.923
+      },
+      {
+        "PLAYER_NAME": "LeBron James",
+        "TEAM_NAME": "Los Angeles Lakers",
+        "SEASON": 2023,
+        "GAMES_PLAYED": 71,
+        "MINUTES": 35.0,
+        "POINTS": 25.0,
+        "ASSISTS": 7.3,
+        "REBOUNDS": 7.5,
+        "STEALS": 1.1,
+        "BLOCKS": 0.6,
+        "TURNOVERS": 3.5,
+        "FG_PERCENT": 0.51,
+        "THREE_PERCENT": 0.36,
+        "FT_PERCENT": 0.76
+      }
+    ]
+  }
+}
